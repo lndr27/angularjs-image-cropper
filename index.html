@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>Image Cropper</title>
+    <style>
+        .container {
+            max-width: 640px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .cropper-view-box,
+        .cropper-face {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body ng-app="imageCropperModule">
+
+    <div ng-controller="test">
+        <div image-cropper class="container" crop="foo(src, blob)"></div>
+    </div>
+
+
+    <img id="foo" src="" />
+    <img id="bar" src="" />
+
+
+    <link rel="stylesheet" type="text/css" href="node_modules/cropperjs/dist/cropper.min.css" />
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/cropperjs/dist/cropper.min.js"></script>
+    <script src="node_modules/pica/dist/pica.min.js"></script>
+    <script src="js/image-cropper.js"></script>
+
+    <script>
+        var func = function () {
+
+            var srcCanvas = document.createElement('canvas');
+            var ctx = srcCanvas.getContext('2d');
+            ctx.drawImage($('#baz'), 0, 0, $('#baz').width, $('#baz').height);
+
+            var offScreenCanvas = document.createElement('canvas');
+
+            resizer = pica({ features: ['js', 'wasm', 'ww', 'cib'] });
+
+            resizer.resize(srcCanvas, offScreenCanvas, {
+                unsharpAmount: 80,
+                unsharpRadius: 0.6,
+                unsharpThreshold: 2
+            })
+            .then(result => resizer.toBlob(result, 'image/jpeg', 0.90))
+            .then(blob => { debugger; console.log('resized to canvas & created blob!'); });
+        };
+
+
+
+    </script>
+
+
+</body>
+
+</html>

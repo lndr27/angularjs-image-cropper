@@ -1,0 +1,17 @@
+{
+  "name": "image_cropper",
+  "version": "1.0.0",
+  "description": "angularjs directive image-cropper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.5",
+    "cropperjs": "^1.4.1",
+    "pica": "^4.1.1"
+  }
+}
